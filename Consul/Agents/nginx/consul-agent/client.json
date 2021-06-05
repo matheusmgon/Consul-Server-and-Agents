@@ -1,0 +1,28 @@
+{
+    "node_name": "nginx",
+    "data_dir": "/etc/consul/data",
+    "datacenter":"LOCAL",
+    "retry_join": ["consul-server"],
+    "rejoin_after_leave": true,
+    "service": {
+      "name": "nginx",
+      "tags": [
+              "consul agente nginx",
+              "traefik.enable=true",
+              "traefik.http.routers.nginx.entrypoints=web",
+              "traefik.http.routers.nginx.rule=Host(`nginx.redelocal`)",
+              "traefik.http.services.nginx.loadbalancer.server.port=80"
+      ],
+      "check": {
+        "id": "nginx",
+        "name":"nginx check port 80",
+        "http":"http://localhost",
+        "interval":"10s",
+        "timeout":"1s"
+      }
+    },
+    "verify_incoming": false,
+    "verify_outgoing": false,
+    "verify_server_hostname": false
+  
+  }

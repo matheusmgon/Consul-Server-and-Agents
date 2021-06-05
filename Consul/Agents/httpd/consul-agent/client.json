@@ -1,0 +1,28 @@
+{
+    "node_name": "httpd",
+    "data_dir": "/etc/consul/data",
+    "datacenter":"LOCAL",
+    "retry_join": ["consul-server"],
+    "rejoin_after_leave": true,
+    "service": {
+      "name": "httpd",
+      "tags": [
+              "consul agente httpd",
+              "traefik.enable=true",
+              "traefik.http.routers.httpd.entrypoints=web",
+              "traefik.http.routers.httpd.rule=Host(`httpd.redelocal`)",
+              "traefik.http.services.httpd.loadbalancer.server.port=80"
+      ],
+      "check": {
+        "id": "httpd",
+        "name":"httpd check port 80",
+        "tcp":"localhost:80",
+        "interval":"10s",
+        "timeout":"1s"
+      }
+    },
+    "verify_incoming": false,
+    "verify_outgoing": false,
+    "verify_server_hostname": false
+  
+  }
