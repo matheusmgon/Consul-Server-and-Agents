@@ -1,6 +1,6 @@
 # Consul Server with Agents
 
-![image](consul.agents.png)
+![image](consul-agents.png)
 
 ## Project
 We are using one arquiteture with consul server and thow web servers.
